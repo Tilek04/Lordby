@@ -1,0 +1,15 @@
+.auth__container{
+    display: flex;
+
+}
+
+.auth_left_side{
+    margin: auto;
+}
+
+.auth_right_side{
+  margin: auto;
+}
+.input_email{
+    border: red;
+}
