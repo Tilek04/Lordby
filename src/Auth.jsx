@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
-import { Formik, Form } from "formik";
+import { Formik, Form, ErrorMessage } from "formik";
 import lordImg from "./assets/illustration.png";
 import { basicSchema } from "./schemas";
 import "./auth.css";
 import { API } from "./axios.js";
+import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Auth() {
   const [userName, setUserName] = useState("");
   const [pass, setPass] = useState("");
-
-  const navigate = useNavigate()
+  const [visible, setVisible] = useState(true);
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -31,18 +32,16 @@ function Auth() {
         username: formik.values.username,
         password: formik.values.password,
       });
-  
+
       // handle the response as needed
       console.log(response);
-      if(response.status === 200) {
-        navigate("/home")
-          }
+      if (response.status === 200) {
+        navigate("/home");
+      }
     } catch (error) {
       console.error("Error during login:", error);
     }
   };
-
-  
 
   return (
     <>
@@ -53,24 +52,37 @@ function Auth() {
           <p>Your personal tutor</p>
         </div>
         <div className="auth_right_side">
-          <h1>Welcome Back!</h1>
+          <h1>Welcome Back !</h1>
           <input
             id="username"
             type="text"
+            autoCapitalize="off"
             value={formik.values.username}
             onChange={formik.handleChange}
             placeholder="Enter your name"
+            className={formik.errors.username ? "error" : ""}
           />
-          <br />
+
           <input
             id="password"
-            type="password"
+            type={visible ? "text" : "password"}
+            autoCapitalize="off"
             value={formik.values.password}
             onChange={formik.handleChange}
             placeholder="Enter your password"
+            className={formik.errors.password ? "error" : ""}
           />
-          <br />
-          <button onClick={handleLogin} type="submit">Log in</button>
+          <div className="icons" onClick={() => setVisible(!visible)}>
+            {visible ? <EyeOutlined /> : <EyeInvisibleOutlined />}
+          </div>
+
+          <button className="login_button" onClick={handleLogin} type="submit">
+            Log in
+          </button>
+
+          <Link className="link" to="/sign-up">
+            I don't have an account yet
+          </Link>
         </div>
       </div>
     </>

@@ -1,14 +1,15 @@
 import React from "react";
 import img from "./assets/illustration.png";
+import './home.css'
 
 function Home() {
   return (
     <div>
-      <div>
-        <h2>Welcome back</h2>
-        <p>Lorby - your personal tutor</p>
+      <div className="home_container">
+        <h2>Welcome back !</h2>
+        <p>Lorby - your personal tutor !</p>
         <img className="home_img" src={img} alt="main image" />
-        <button>Log Out</button>
+        <span>Log Out</span>
       </div>
     </div>
   );
