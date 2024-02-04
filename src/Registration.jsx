@@ -3,7 +3,9 @@ import { useFormik } from "formik";
 import { Formik, Form } from "formik";
 import lordImg from "./assets/illustration.png";
 import { basicSchema } from "./schemas";
-
+import { Link } from "react-router-dom";
+import "./registration.css";
+import { LeftCircleOutlined } from "@ant-design/icons";
 
 function Registration() {
   const formik = useFormik({
@@ -19,6 +21,12 @@ function Registration() {
   return (
     <>
       <div className="auth__container">
+        <div className="back_button">
+          <Link to="/" className="button_back">
+            <LeftCircleOutlined className="button_icon" />
+            <span>Back</span>
+          </Link>
+        </div>
         <div className="auth_left_side">
           <img src={lordImg} className="auth_img" alt="Lorby main image" />
           <h2 className="auth_text">Lorby</h2>
@@ -42,7 +50,7 @@ function Registration() {
             placeholder="Enter your password"
           />
           <br />
-          <button type="submit">Log in</button>
+          <button type="submit">Next</button>
         </div>
       </div>
     </>

@@ -54,11 +54,12 @@ input {
 
 .link {
   margin: auto;
-  padding-top: 40px;
+  margin-top: 40px;
   text-decoration: none;
   color: #292929;
   font-family: sans-serif;
   font-size: 15px;
+  
 }
 .link:hover{
     color: #767676;

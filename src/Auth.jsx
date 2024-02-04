@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useFormik } from "formik";
 import { Formik, Form, ErrorMessage } from "formik";
 import lordImg from "./assets/illustration.png";
@@ -9,11 +9,13 @@ import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Auth() {
   const [userName, setUserName] = useState("");
   const [pass, setPass] = useState("");
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
   const navigate = useNavigate();
 
   const formik = useFormik({
@@ -33,18 +35,23 @@ function Auth() {
         password: formik.values.password,
       });
 
-      // handle the response as needed
       console.log(response);
+
       if (response.status === 200) {
+        localStorage.setItem("accessToken", response.data.access);
+        localStorage.setItem("refreshToken", response.data.refresh);
         navigate("/home");
+        toast.success("Login successful!");
       }
     } catch (error) {
       console.error("Error during login:", error);
+      toast.error("Invalid username or password"); // Display error message
     }
   };
 
   return (
     <>
+      <ToastContainer />
       <div className="auth__container">
         <div className="auth_left_side">
           <img src={lordImg} className="auth_img" alt="Lorby main image" />
