@@ -1,7 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./modalwindow.css";
+import { useNavigate } from "react-router-dom";
 
 function ModalWindow({ active, setActive }) {
+  const [logOut, setLogOut] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (logOut) {
+      window.localStorage.removeItem("accessToken");
+      window.localStorage.removeItem("refreshToken");
+      navigate("/");
+    }
+  });
+
   return (
     <div>
       <div
@@ -11,8 +23,12 @@ function ModalWindow({ active, setActive }) {
           <h3>Log Out ?</h3>
           <p>Are you sure?</p>
           <div className="buttons">
-            <button className="Yes">Yes</button>
-            <button className="No" onClick={() => setActive(false)}>No</button>
+            <button className="Yes" onClick={() => setLogOut(true)}>
+              Yes
+            </button>
+            <button className="No" onClick={() => setActive(false)}>
+              No
+            </button>
           </div>
         </div>
       </div>

@@ -9,60 +9,58 @@
   transition: 0.5s;
   pointer-events: none;
 }
-.modal.active{
-    opacity: 1;
-    transform: scale(1);
-    pointer-events: all;
+.modal.active {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: all;
 }
 
-.modal_content{
-    border-radius: 10px;
-    background-color: #fff;
-    height: 220px;
-    width: 350px;
-    position: relative;
-    left: 35%;
-    top: 30%;
+.modal_content {
+  border-radius: 10px;
+  background-color: #fff;
+  height: 220px;
+  width: 350px;
+  position: relative;
+  left: 35%;
+  top: 30%;
 }
-.modal_content > h3{
-    text-align: center;
-    padding-top: 15px;
-    font-family: sans-serif;
-    font-size: 25px;
+.modal_content > h3 {
+  text-align: center;
+  padding-top: 15px;
+  font-family: sans-serif;
+  font-size: 25px;
 }
 .modal_content > p {
-    text-align: center;
-    padding-top: 10px;
-    color: #888;
-    font-family: sans-serif;
-    font-size: 15px;
+  text-align: center;
+  padding-top: 10px;
+  color: #888;
+  font-family: sans-serif;
+  font-size: 15px;
 }
 
-.buttons{
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    margin-left: 10%;
-    padding-top: 30px;
-   
+.buttons {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin-left: 10%;
+  padding-top: 30px;
 }
-.Yes{
+.Yes {
   padding: 10px 0;
   border-radius: 10px;
   background-color: #fff;
   border: none;
-
 }
-.No{
-margin-top: 10px;
-padding: 10px 0;
-border-radius: 10px;
-background-color: #fff;
-border: none;
+.No {
+  margin-top: 10px;
+  padding: 10px 0;
+  border-radius: 10px;
+  background-color: #fff;
+  border: none;
 }
-.Yes:hover, .No:hover{
-    background-color: #292929;
-    cursor: pointer;
-    color: #fff;
-
+.Yes:hover,
+.No:hover {
+  background-color: #292929;
+  cursor: pointer;
+  color: #fff;
 }

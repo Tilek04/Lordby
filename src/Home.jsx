@@ -21,7 +21,6 @@ function Home() {
 
   return (
     <div>
-      
       <ToastContainer />
       <div className="home_container">
         <h2>Welcome back !</h2>
