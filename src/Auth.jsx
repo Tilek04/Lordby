@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useFormik } from "formik";
-import { Formik, Form, ErrorMessage } from "formik";
 import lordImg from "./assets/illustration.png";
 import { basicSchema } from "./schemas";
 import "./auth.css";
