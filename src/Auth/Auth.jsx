@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useFormik } from "formik";
-import lordImg from "./assets/illustration.png";
-import { basicSchema } from "./schemas";
+import lordImg from "../assets/illustration.png";
+import { basicSchema } from "../schemas/index.js";
 import "./auth.css";
-import { API } from "./axios.js";
+import { API } from "../axios.js";
 import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";

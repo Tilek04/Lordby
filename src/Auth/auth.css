@@ -59,19 +59,21 @@ input {
   color: #292929;
   font-family: sans-serif;
   font-size: 15px;
+  
 }
-.link:hover {
-  color: #767676;
+.link:hover{
+    color: #767676;
 }
-.icons {
-  position: relative;
-  left: 280px;
-  top: -30px;
-  cursor: pointer;
-  width: 0%;
-  height: 0%;
+.icons{
+    position: relative;
+    left: 280px;
+    top: -30px;
+    cursor: pointer;
+    width: 0%;
+    height: 0%;
 }
 
 .input_email {
   border: red;
 }
+

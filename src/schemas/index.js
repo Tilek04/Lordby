@@ -11,11 +11,12 @@ export const basicSchema = yup.object().shape({
     .required("You must enter a username"),
   password: yup
     .string()
-    .min(5)
-    .matches(passwordRules, { meesage: "Please create a stronger password" })
+    .min(8, "Minimum 8 characters")
+    .max(15, "Maximum 15 characters")
+    .matches({ meesage: "Minimum 1 symbol (!, ', #, $" })
     .required("Required"),
   confirmpassword: yup
     .string()
-    .oneOf([yup.ref("password")])
+    .oneOf([yup.ref("password")], "Password do not match")
     .required("Required"),
 });

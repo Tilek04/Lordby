@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useFormik } from "formik";
-import { Formik, Form } from "formik";
-import lordImg from "./assets/illustration.png";
-import { basicSchema } from "./schemas";
+import lordImg from "../assets/illustration.png";
+import { basicSchema } from "../schemas";
 import { Link } from "react-router-dom";
 import "./registration.css";
 import { EyeOutlined, EyeInvisibleOutlined } from "@ant-design/icons";
@@ -10,12 +9,13 @@ import { useNavigate } from "react-router-dom";
 
 import { LeftCircleOutlined } from "@ant-design/icons";
 import axios from "axios";
-import { API } from "./axios";
+import { API } from "../axios";
 
 function Registration() {
   const [visible, setVisible] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState(false);
   const navigate = useNavigate();
+  const hasSpecialCharacter = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
 
   const formik = useFormik({
     initialValues: {
@@ -36,7 +36,7 @@ function Registration() {
           email: formik.values.email,
           username: formik.values.username,
           password: formik.values.password,
-          password_confirm: formik.values.confirmpassword,
+          password_confirm: formik.values.password_confirm,
         })
         .then((res) => {
           console.log(res);
@@ -51,7 +51,7 @@ function Registration() {
 
   return (
     <>
-      <div className="auth__container">
+      <div className="register__container">
         <div className="back_button">
           <Link to="/" className="button_back">
             <LeftCircleOutlined className="button_icon" />
@@ -65,48 +65,91 @@ function Registration() {
         </div>
         <div className="auth_right_side">
           <h1>New account!</h1>
+
           <input
             id="email"
             type="email"
+            className={formik.errors.email ? "input-error" : ""}
             value={formik.values.email}
             onChange={formik.handleChange}
             placeholder="Enter your email"
           />
+          {formik.errors.email && (
+            <p className="error">{formik.errors.email}</p>
+          )}
           <input
             id="username"
             type="text"
             value={formik.values.username}
             onChange={formik.handleChange}
+            className={formik.errors.username ? "input-error" : ""}
             placeholder="Enter your name"
           />
-
+          {formik.errors.username && (
+            <p className="error">{formik.errors.username}</p>
+          )}
           <input
             id="password"
             type={visible ? "text" : "password"}
             value={formik.values.password}
             onChange={formik.handleChange}
+            maxLength={20}
+            className={formik.errors.password ? "input-error" : ""}
             placeholder="Enter your password"
           />
-          <div className="icons" onClick={() => setVisible(!visible)}>
+
+          <div className="icon_eye" onClick={() => setVisible(!visible)}>
             {visible ? <EyeOutlined /> : <EyeInvisibleOutlined />}
           </div>
+
+          <p
+            className={`${
+              formik.values.password.length >= 8 ? "valid" : "invalid"
+            } ${formik.values.password ? "" : "gray"}`}>
+            Minimum of 8 characters
+          </p>
+          <p
+            className={` ${
+              formik.values.password.length &&
+              hasSpecialCharacter.test(formik.values.password)
+                ? "valid"
+                : "invalid"
+            } ${formik.values.password ? "" : "gray"}
+            `}>
+            Minimum of 1 symbol ()!, ', #, $ ..."
+          </p>
+          <p
+            className={`   ${
+              formik.values.password.length && /\d/.test(formik.values.password)
+                ? "valid"
+                : "invalid"
+            } ${formik.values.password ? "" : "gray"}`}>
+            At least one digit
+          </p>
+
           <input
             id="confirmpassword"
             type={confirmPassword ? "text" : "password"}
             value={formik.values.confirmpassword}
+            className={formik.errors.confirmpassword ? "input-error" : ""}
             placeholder="Confirm your password"
+            maxLength={15}
             onChange={formik.handleChange}
           />
           <div
-            className="icons"
+            className="icon_eye"
             onClick={() => setConfirmPassword(!confirmPassword)}>
             {confirmPassword ? <EyeOutlined /> : <EyeInvisibleOutlined />}
           </div>
+          {formik.errors.confirmpassword && (
+            <p className="error">{formik.errors.confirmpassword}</p>
+          )}
 
           <button
             className="next_button"
             type="submit"
-            onClick={handleRegister}>
+            onClick={handleRegister}
+            disabled={!formik.isValid || formik.isSubmitting}>
             Next
           </button>
         </div>
