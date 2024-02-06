@@ -43,11 +43,11 @@
     cursor: pointer;
     background-color: #292929;
     color: white;
-    width: 270px;
+
 }
-input{
+ input{
     outline: none;
-    width: 270px;
+  
 }
 input.input-error, select.input-color{
     border: 1.5px solid;

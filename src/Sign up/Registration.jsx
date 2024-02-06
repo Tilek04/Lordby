@@ -36,12 +36,12 @@ function Registration() {
           email: formik.values.email,
           username: formik.values.username,
           password: formik.values.password,
-          password_confirm: formik.values.password_confirm,
+          password_confirm: formik.values.confirmpassword,
         })
         .then((res) => {
           console.log(res);
           if (res.status === 201) {
-            navigate("/");
+            navigate("/sign-up/confirmation");
           }
         });
     } catch (error) {

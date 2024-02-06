@@ -18,11 +18,14 @@
 }
 
 input {
+
   border: none;
   background-color: #eee;
   padding: 15px 20px 15px 20px;
   border-radius: 10px;
   margin-top: 10px;
+
+
 }
 
 .auth_right_side > h1 {
@@ -74,6 +77,7 @@ input {
 }
 
 .input_email {
+  border: 1 solid;
   border: red;
 }
 
